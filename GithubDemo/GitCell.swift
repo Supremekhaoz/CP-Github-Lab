@@ -20,9 +20,7 @@ class GitCell: UITableViewCell {
         didSet {
             repoNameLabel.text = repo.name
             forkLabel.text = "\(repo.forks)"
-            favLabel.text = "\(repo.stars)"
-            
-            
+            favLabel.text = "\(repo.stars)"            
         }
     }
     override func awakeFromNib() {

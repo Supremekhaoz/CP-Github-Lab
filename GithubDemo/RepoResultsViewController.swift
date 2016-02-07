@@ -25,7 +25,9 @@ class RepoResultsViewController: UIViewController, UITableViewDelegate, UITableV
         // Initialize the UISearchBar
         searchBar = UISearchBar()
         searchBar.delegate = self
-
+        
+        self.repos.fetchRepos()
+        
         // Add SearchBar to the NavigationBar
         searchBar.sizeToFit()
         navigationItem.titleView = searchBar
@@ -35,15 +37,17 @@ class RepoResultsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let repos = repos {
+        
+        if repos != nil {
             return repos.count
-        }else {
+        } else {
+            print("WE GOT IT HERE")
             return 0
         }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("GitCel", forIndexPath: indexPath) as! GitCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("GitCell", forIndexPath: indexPath) as! GitCell
         cell.repo = repos[indexPath.row]
         
         return cell
